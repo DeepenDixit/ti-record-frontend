@@ -1,0 +1,7 @@
+flask
+flask-wtf
+
+requests
+
+pydantic
+pydantic_settings

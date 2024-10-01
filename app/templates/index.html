@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}TI Record Filter Utility{% endblock %}
+{% block head %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.bundle.js') }}"></script>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <script>
+        $(document).ready(function() {
+            var table = $('#records-table').DataTable({
+                dom: '<"top"lf>rt<"bottom"ip><"clear">',
+                buttons: [
+                    {
+                        extend: 'csvHtml5',
+                        text: 'Download CSV',
+                        className: 'btn btn-primary'
+                    }
+                ]
+            });
+
+            table.buttons().container().appendTo('#button-container');
+        });
+    </script>
+{% endblock %}
+{% block content %}
+    <div id="form-root" style="height: 200px; width: 1000px; margin: 0 auto; display: flex; justify-content: center; align-items: center;"></div>
+    <div id="loader" style="display: none; text-align: center;">
+        <div class="loader"></div>
+    </div>
+    <div id="data-table-root" style="display: none; width: 1200px; margin: 0 auto; justify-content: center;">
+        <table id="records-table" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Origination Time</th>
+                    <th>Cluster ID</th>
+                    <th>User ID</th>
+                    <th>Phone</th>
+                    <th>Voice Mail</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="button-container" style="display: none; width: 1200px; margin: 0 auto; justify-content: center;" class="button-container"></div>
+{% endblock %}

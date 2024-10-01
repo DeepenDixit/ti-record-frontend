@@ -1,0 +1,6 @@
+.venv
+.env
+.vscode
+node_modules
+app/static/js
+.DS_Store
